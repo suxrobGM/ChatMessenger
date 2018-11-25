@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TelegramControls.ViewModels"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="500">
+    
     <UserControl.Resources>
         <Style x:Key="LabelStyle1" TargetType="{x:Type Label}">
             <Setter Property="Template">
@@ -21,14 +24,16 @@
             </Setter>
         </Style>
     </UserControl.Resources>
+    
     <UserControl.InputBindings>
         <KeyBinding Key="Return" Command="{Binding EnterKeyCommand}"/>
     </UserControl.InputBindings>
+    
     <Grid>
         <DockPanel x:Name="rootDock">
             <Grid x:Name="topBarGrid" DockPanel.Dock="Top" Height="40" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
                 <StackPanel Width="265" HorizontalAlignment="Left">
-                    <TextBlock TextWrapping="Wrap" Text="GroupName" FontWeight="Bold"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding GroupName}" FontWeight="Bold"/>
                     <TextBlock TextWrapping="Wrap" Text="{Binding GroupMembers}" FontWeight="Bold"/>
                 </StackPanel>
             </Grid>
@@ -36,7 +41,7 @@
                 <Button DockPanel.Dock="Left" Content="@" TextBlock.TextAlignment="Center" Width="45" FontWeight="Bold" HorizontalAlignment="Left"/>
                 <TextBox DockPanel.Dock="Left" TextWrapping="Wrap" Text="{Binding TypingMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </DockPanel>
-            <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding StackMessages}" Background="{Binding BackgroundImageSource, Mode=TwoWay}">
+            <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding StackMessages}" Background="{Binding BackgroundImageSource, Mode=TwoWay}" BorderBrush="{x:Null}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel VerticalAlignment="Bottom"/>
@@ -44,6 +49,7 @@
                 </ListBox.ItemsPanel>
             </ListBox>
         </DockPanel>
-        <Label x:Name="chattingLabel" Content="Please select a chat to start messaging" Height="32" Margin="99,228,84,340" Style="{DynamicResource LabelStyle1}" Width="316" VerticalAlignment="Center"/>
+        <Label x:Name="welcomeLabel" Content="Please select a chat to start messaging" Height="32" Margin="99,228,84,340" Style="{DynamicResource LabelStyle1}" Width="316" VerticalAlignment="Center"/>
     </Grid>
+    
 </UserControl>

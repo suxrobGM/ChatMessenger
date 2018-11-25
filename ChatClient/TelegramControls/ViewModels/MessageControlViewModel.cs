@@ -8,7 +8,7 @@ using TelegramControls.Views;
 using Prism.Mvvm;
 using Prism.Commands;
 
-namespace TelegramControls.ViewModels
+namespace TelegramControls
 {
     public enum MessageControlState
     {
@@ -18,30 +18,38 @@ namespace TelegramControls.ViewModels
         ChannelState
     }
 
+    public enum ChatItemType
+    {
+        IsChannelType,
+        IsPersonalChattingType,
+        IsGroupChattingType
+    }
+}
+
+namespace TelegramControls.ViewModels
+{    
     public class MessageControlViewModel : BindableBase
     {
         private string typingMessage;
-        private MessageControlState messageControlState;
-
-        public string BackgroundImageSource { get; set; }
-        public string GroupName { get; set; }
-        public string TypingMessage { get => typingMessage; set { typingMessage = value; RaisePropertyChanged("TypingMessage"); } }
-        public int GroupMembers { get; set; }
-        public MessageControlState ControlState { get => messageControlState; set { messageControlState = value; RaisePropertyChanged("ControlState"); } }
+        private string groupName;
+        private int groupMembers;
+       
+        public string GroupName { get => groupName; set { SetProperty(ref groupName, value); } }
+        public string TypingMessage { get => typingMessage; set { SetProperty(ref typingMessage, value); } }
+        public int GroupMembers { get => groupMembers; set { SetProperty(ref groupMembers, value); } }       
         public ObservableCollection<MessageItem> StackMessages { get; set; }
         public DelegateCommand EnterKeyCommand { get; }
 
         public MessageControlViewModel()
         {
-            StackMessages = new ObservableCollection<MessageItem>();
-            ControlState = MessageControlState.WelcomeState;
+            StackMessages = new ObservableCollection<MessageItem>();          
 
             EnterKeyCommand = new DelegateCommand(() =>
             {
                 if (TypingMessage == String.Empty)
                     return;
 
-                StackMessages.Add(new MessageItem() { MessageText = TypingMessage, });
+                StackMessages.Add(new MessageItem() { MessageText = TypingMessage });
                 TypingMessage = String.Empty;
             });
         }

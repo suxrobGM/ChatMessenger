@@ -60,7 +60,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\ChatItemViewModel.cs" />
     <Compile Include="ViewModels\MessageItemViewModel.cs" />
+    <Compile Include="ViewModels\TopBarViewModel.cs" />
     <Compile Include="Views\MessageItem.xaml.cs">
       <DependentUpon>MessageItem.xaml</DependentUpon>
     </Compile>

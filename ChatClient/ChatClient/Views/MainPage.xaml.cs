@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ChatClient.ViewModels;
+using TelegramControls.Views;
 
 namespace ChatClient.Views
 {
@@ -22,7 +18,7 @@ namespace ChatClient.Views
     {
         public MainPage()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
 
         private void Expander_Collapsed(object sender, RoutedEventArgs e)
@@ -35,6 +31,6 @@ namespace ChatClient.Views
         {
             (sender as Expander).Height = 460;
             (sender as Expander).Width = 210;
-        }
+        }     
     }
 }

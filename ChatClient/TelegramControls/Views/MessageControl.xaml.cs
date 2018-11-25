@@ -6,13 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TelegramControls.ViewModels;
 
 namespace TelegramControls.Views
@@ -21,25 +14,26 @@ namespace TelegramControls.Views
     /// Логика взаимодействия для UserControl1.xaml
     /// </summary>
     public partial class MessageControl : UserControl
-    {
-        private MessageControlViewModel viewModel;
-
+    {     
         public MessageControl()
         {
-            InitializeComponent();
-            viewModel = new MessageControlViewModel();
-            this.DataContext = viewModel;
+            InitializeComponent();           
         }
 
         #region Dependency Properties
-        public static readonly DependencyProperty ControlStateProperty = DependencyProperty.Register("ControlState", typeof(MessageControlState), typeof(MessageControl), new PropertyMetadata(MessageControlState.WelcomeState, ControlStatePropertyChanged));
-        public static readonly DependencyProperty BackgroundImageSourceProperty = DependencyProperty.Register("BackgroundImageSource", typeof(string), typeof(MessageControl), new PropertyMetadata(null, OnDependencyPropertyChanged));
+        public static readonly DependencyProperty ControlStateProperty = DependencyProperty.Register("ControlState", typeof(MessageControlState), typeof(MessageControl), new PropertyMetadata(MessageControlState.WelcomeState, OnMessageControlStatePropertyChanged));
+        public static readonly DependencyProperty GroupNameProperty = DependencyProperty.Register("GroupName", typeof(string), typeof(MessageControl), new PropertyMetadata(null, OnGroupNamePropertyChanged));
 
-        [Category("Common")]
-        public string BackgroundImageSource
+        private static void OnMessageControlStatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get { return GetValue(BackgroundImageSourceProperty) as string; }
-            set { SetValue(BackgroundImageSourceProperty, value); }
+            var messageControl = d as MessageControl;
+            messageControl.ChangeState((MessageControlState)e.NewValue);
+        }
+       
+        private static void OnGroupNamePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var messageControl = d as MessageControl;
+            (messageControl.DataContext as MessageControlViewModel).GroupName = e.NewValue as string;
         }
 
         [Category("Common")]
@@ -49,26 +43,21 @@ namespace TelegramControls.Views
             set { SetValue(ControlStateProperty, value); }
         }
 
-        private static void OnDependencyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        [Category("Common")]
+        public string GroupName
         {
-            ((MessageControl)d).viewModel.BackgroundImageSource = e.NewValue as string;
-        }             
-
-        private static void ControlStatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((MessageControl)d).viewModel.ControlState = (MessageControlState)e.NewValue;
-
-            //ChangeState(ControlState);
+            get { return (string)GetValue(GroupNameProperty); }
+            set { SetValue(GroupNameProperty, value); }
         }
-
+              
         private void ChangeState(MessageControlState controlState)
         {
             switch (controlState)
             {
                 case MessageControlState.WelcomeState:
                     {
-                        topBarGrid.Visibility = Visibility.Hidden;
-                        keyboardDockPanel.Visibility = Visibility.Hidden;
+                        topBarGrid.Visibility = Visibility.Collapsed;
+                        keyboardDockPanel.Visibility = Visibility.Collapsed;
                         break;
                     }
                    
@@ -76,6 +65,7 @@ namespace TelegramControls.Views
                     {
                         topBarGrid.Visibility = Visibility.Visible;
                         keyboardDockPanel.Visibility = Visibility.Visible;
+                        welcomeLabel.Visibility = Visibility.Collapsed;
                         break;
                     }
                     
@@ -83,20 +73,22 @@ namespace TelegramControls.Views
                     {
                         topBarGrid.Visibility = Visibility.Visible;
                         keyboardDockPanel.Visibility = Visibility.Visible;
+                        welcomeLabel.Visibility = Visibility.Collapsed;
                         break;
                     }
                     
                 case MessageControlState.ChannelState:
                     {
                         topBarGrid.Visibility = Visibility.Visible;
-                        keyboardDockPanel.Visibility = Visibility.Hidden;
+                        keyboardDockPanel.Visibility = Visibility.Collapsed;
+                        welcomeLabel.Visibility = Visibility.Collapsed;
                         break;
                     }
                     
                 default:
                     break;
             }
-        }
+        }       
         #endregion
 
     }

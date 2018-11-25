@@ -21,13 +21,10 @@ namespace TelegramControls.Views
     /// Логика взаимодействия для MessageItem.xaml
     /// </summary>
     public partial class MessageItem : UserControl
-    {
-        private MessageItemViewModel viewModel;
+    {      
         public MessageItem()
         {
-            InitializeComponent();
-            viewModel = new MessageItemViewModel();
-            this.DataContext = viewModel;
+            InitializeComponent();            
         }
 
         #region Dependency Properties
@@ -50,13 +47,12 @@ namespace TelegramControls.Views
 
         private static void OnMessageTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((MessageItem)d).viewModel.MessageText = e.NewValue as string;
+            (((MessageItem)d).DataContext as MessageItemViewModel).MessageText = e.NewValue as string;
         }
         private static void OnUserNamePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((MessageItem)d).viewModel.UserName = e.NewValue as string;
+            (((MessageItem)d).DataContext as MessageItemViewModel).UserName = e.NewValue as string;
         }
-
         #endregion
     }
 }

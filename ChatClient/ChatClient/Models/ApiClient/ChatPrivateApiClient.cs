@@ -20,7 +20,7 @@ namespace ChatClient.Models.ApiClient
     {
         private HttpClient request;
         private string host = "localhost:44328";
-        private string protectedAccessKey;
+        //private string protectedAccessKey;
         private ApiVersion apiVersion = ApiVersion.v1;
 
         #region Constructors

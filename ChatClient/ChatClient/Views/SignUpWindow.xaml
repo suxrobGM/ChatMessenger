@@ -11,8 +11,7 @@
         Height="335" 
         Width="445" 
         ResizeMode="NoResize" 
-        WindowStartupLocation="CenterOwner" 
-        Closing="Window_Closing">
+        WindowStartupLocation="CenterOwner">
 
     <Grid Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
         <WrapPanel HorizontalAlignment="Left" Height="291" Margin="10,10,0,0" VerticalAlignment="Top" Width="418">

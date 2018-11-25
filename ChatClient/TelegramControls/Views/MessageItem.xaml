@@ -4,7 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TelegramControls.Views"
-             mc:Ignorable="d" Height="50" Width="250" VerticalAlignment="Bottom">
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             Height="50" 
+             Width="250" 
+             VerticalAlignment="Bottom">
+    
     <UserControl.Resources>
         <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
             <Setter Property="Template">
@@ -23,6 +29,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
+    
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="13*"/>
@@ -33,4 +40,5 @@
         <Path Fill="{Binding Background, ElementName=label}" VerticalAlignment="{Binding VerticalAlignment, ElementName=label}"  Data="M0.0011061355,4.0077328 L0.0049516284,4.0086126 0,4.0086197 z M5.4738341,0 L8.3499995,3.9966196 0.34465308,4.0081243 0.37712513,4.0027537 C1.0069015,3.8907642 2.0620168,3.3566348 3.1475361,2.5609028 4.4742819,1.5883417 5.4146863,0.54149002 5.4722334,0.019782007 z" Height="10.009" Stretch="Fill" Stroke="Black" StrokeThickness="0"  Width="13.866" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Margin="26.534,0,0,-0.4" Grid.ColumnSpan="2"/>
         <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Stroke="Black" StrokeThickness="0" VerticalAlignment="Bottom" Width="25"/>
     </Grid>
+    
 </UserControl>
