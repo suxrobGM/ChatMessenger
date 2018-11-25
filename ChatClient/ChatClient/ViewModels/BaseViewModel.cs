@@ -10,12 +10,12 @@ namespace ChatClient.ViewModels
 {
     public class BaseViewModel : BindableBase
     {     
-        protected SingletonModel model;
+        protected SingletonModel Model;
 
 
         public BaseViewModel()
         {
-            model = SingletonModel.GetInstance();         
+            Model = SingletonModel.GetInstance();         
         }        
     }
 }

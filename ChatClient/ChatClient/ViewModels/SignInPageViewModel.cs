@@ -44,7 +44,7 @@ namespace ChatClient.ViewModels
 
             SignInCommand = new DelegateCommand(async () =>
             {
-                var result = await model.PrivateApiClient.CheckUserLoginAsync(new NetworkCredential(loginOrEmail, password));
+                var result = await Model.PrivateApiClient.CheckUserLoginAsync(new NetworkCredential(loginOrEmail, password));
 
                 if(result)
                 {

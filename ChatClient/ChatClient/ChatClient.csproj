@@ -83,7 +83,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\ApiClient\ChatPrivateApiClient.cs" />
-    <Compile Include="Models\ApiClient\User.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\SingletonModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />

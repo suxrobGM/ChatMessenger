@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="TelegramControls.Views.ExpanderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:local="clr-namespace:TelegramControls.Views"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="460" d:DesignWidth="210">
+    <Grid>
+        <StackPanel Background="#FFE5E5E5">
+            <StackPanel>
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#BF000000" Offset="0"/>
+                        <GradientStop Color="#BF489CBA" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <Ellipse Width="50" Height="50" Stroke="Black" HorizontalAlignment="Left" Margin="5,5,0,0"/>
+                <TextBlock Text="{Binding FullName}" FontWeight="Bold" Margin="5,0,0,0"/>
+                <TextBlock Text="{Binding Email}" Margin="5,0,0,0"/>
+                <TextBlock Text="{Binding TelephoneNumber}" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

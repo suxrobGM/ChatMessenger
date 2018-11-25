@@ -61,8 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewModels\ChatItemViewModel.cs" />
+    <Compile Include="ViewModels\ExpanderViewModel.cs" />
     <Compile Include="ViewModels\MessageItemViewModel.cs" />
     <Compile Include="ViewModels\TopBarViewModel.cs" />
+    <Compile Include="Views\ExpanderView.xaml.cs">
+      <DependentUpon>ExpanderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MessageItem.xaml.cs">
       <DependentUpon>MessageItem.xaml</DependentUpon>
     </Compile>
@@ -70,6 +74,10 @@
       <DependentUpon>TopBar.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\ChatItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExpanderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

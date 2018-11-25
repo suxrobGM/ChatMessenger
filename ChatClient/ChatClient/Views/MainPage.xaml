@@ -26,7 +26,11 @@
                     <Expander.Effect>
                         <DropShadowEffect BlurRadius="250" RenderingBias="Quality"/>
                     </Expander.Effect>
-                    <Grid Background="#FFE5E5E5"/>
+                    <Views:ExpanderView 
+                        FullName="{Binding DataContext.FullName, RelativeSource={RelativeSource AncestorType=Page}}"
+                        Email="{Binding DataContext.Email, RelativeSource={RelativeSource AncestorType=Page}}"
+                        TelephoneNumber="{Binding DataContext.TelephoneNumber, RelativeSource={RelativeSource AncestorType=Page}}">
+                    </Views:ExpanderView>
                 </Expander>
             </Grid>
 
@@ -37,5 +41,5 @@
             </Views:MessageControl>
         </DockPanel>
     </Grid>
-    
+
 </Page>

@@ -11,13 +11,17 @@ namespace ChatClient.Models
 {  
     public class SingletonModel
     {
-        private static SingletonModel instance;
+        private static SingletonModel instance;    
         //private readonly ChatPrivateApiClient privateApiClient;
+
+        public ChatPrivateApiClient PrivateApiClient { get; }
+        public User CurrentUser { get; set; }
 
         private SingletonModel()
         {
             PrivateApiClient = new ChatPrivateApiClient();
         }
+
 
         public static SingletonModel GetInstance()
         {
@@ -26,7 +30,6 @@ namespace ChatClient.Models
 
             return instance;
         }
-
-        public ChatPrivateApiClient PrivateApiClient { get; private set; }             
+                     
     }
 }

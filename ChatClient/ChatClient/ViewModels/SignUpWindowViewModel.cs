@@ -8,7 +8,7 @@ using Prism.Mvvm;
 using Prism.Commands;
 using System.Windows;
 using System.Windows.Controls;
-using ChatClient.Models.ApiClient;
+using ChatClient.Models;
 
 namespace ChatClient.ViewModels
 {
@@ -32,10 +32,10 @@ namespace ChatClient.ViewModels
             RegisterCommand = new DelegateCommand<PasswordBox>(async (passwordBox) =>
             {
                
-                var result = await model.PrivateApiClient.AddNewUserAsync(new User
+                var result = await Model.PrivateApiClient.AddNewUserAsync(new User
                 {
                     Login = Login,
-                    Password = passwordBox.Password,
+                    Password = new System.Net.NetworkCredential(Login, passwordBox.Password).SecurePassword,
                     Email = Email,
                     TelephoneNumber = TelephoneNumber,
                     FirstName = FirstName,

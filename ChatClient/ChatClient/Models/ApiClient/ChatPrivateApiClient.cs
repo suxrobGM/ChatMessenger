@@ -51,9 +51,25 @@ namespace ChatClient.Models.ApiClient
                 try
                 {
                     var jArray = JArray.Parse(await response.Content.ReadAsStringAsync());
+
+                    var user = new User
+                    {
+                        Email = jArray[0]["email"].ToString(),
+                        FirstName = jArray[0]["firstName"].ToString(),
+                        LastName = jArray[0]["lastName"].ToString(),
+                        Login = jArray[0]["login"].ToString(),
+                        TelephoneNumber = jArray[0]["telephoneNumber"].ToString(),
+                        Password = new NetworkCredential(null, jArray[0]["password"].ToString()).SecurePassword,
+                        //Photo = jArray[0]["photo"]
+                    };
+
                     string passwordFromDb = jArray[0]["password"].ToString();
                     if (passwordFromDb == networkCredential.Password)
+                    {
+                        SingletonModel.GetInstance().CurrentUser = user;
                         return true;
+                    }
+                        
                 }
                 catch (Exception)
                 {
@@ -71,7 +87,7 @@ namespace ChatClient.Models.ApiClient
             var contentJson = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
             try
             {
-                var response = await request.PostAsync("main/users", contentJson); //POST request
+                var response = await request.PostAsync("main/users", contentJson); // POST request
 
                 if (response.IsSuccessStatusCode)
                     statusCode = 200; // OK
