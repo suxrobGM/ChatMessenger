@@ -1,0 +1,36 @@
+﻿<Page x:Class="ChatClient.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ChatClient.ViewModels"
+      xmlns:Views="clr-namespace:TelegramControls.Views;assembly=TelegramControls"
+      xmlns:prism="http://prismlibrary.com/"
+      prism:ViewModelLocator.AutoWireViewModel="True"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="900"
+      Title="Chat Client">
+    <Grid>
+        <DockPanel>
+            <Grid DockPanel.Dock="Left" VerticalAlignment="Top">
+                <Views:TopBar Height="50" VerticalAlignment="Top" Width="230"/>
+                <ListBox  ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Width="230" Background="#FFCBE5FF" Margin="0,50,0,-647.4" >
+                    <Views:ChatItem Width="210"/>
+                    <Views:ChatItem Width="210"/>
+                    <Views:ChatItem Width="210"/>
+                </ListBox>
+                <Expander Header="" HorizontalAlignment="Left" Height="40" Margin="10,10,0,-420.4" VerticalAlignment="Top" Width="40" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded">
+                    <Expander.Effect>
+                        <DropShadowEffect BlurRadius="250" RenderingBias="Quality"/>
+                    </Expander.Effect>
+                    <Grid Background="#FFE5E5E5"/>
+                </Expander>
+            </Grid>
+            <Views:MessageControl DockPanel.Dock="Left">
+                <Views:MessageControl.Background>
+                    <ImageBrush ImageSource="/ChatClient;component/Resources/background.jpg"/>
+                </Views:MessageControl.Background>
+            </Views:MessageControl>
+        </DockPanel>
+    </Grid>
+</Page>
