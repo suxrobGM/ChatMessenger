@@ -8,6 +8,9 @@ namespace TelegramControls.ViewModels
 {
     public class TopBarViewModel
     {
+        public TopBarViewModel()
+        {
 
+        }
     }
 }

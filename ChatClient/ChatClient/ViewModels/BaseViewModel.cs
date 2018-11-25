@@ -12,6 +12,7 @@ namespace ChatClient.ViewModels
     {     
         protected SingletonModel model;
 
+
         public BaseViewModel()
         {
             model = SingletonModel.GetInstance();         

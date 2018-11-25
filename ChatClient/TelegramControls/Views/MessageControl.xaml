@@ -31,13 +31,13 @@
     
     <Grid>
         <DockPanel x:Name="rootDock">
-            <Grid x:Name="topBarGrid" DockPanel.Dock="Top" Height="40" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
+            <Grid x:Name="topBarGrid" DockPanel.Dock="Top" Height="40" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Visibility="Collapsed">
                 <StackPanel Width="265" HorizontalAlignment="Left">
                     <TextBlock TextWrapping="Wrap" Text="{Binding GroupName}" FontWeight="Bold"/>
                     <TextBlock TextWrapping="Wrap" Text="{Binding GroupMembers}" FontWeight="Bold"/>
                 </StackPanel>
             </Grid>
-            <DockPanel x:Name="keyboardDockPanel" DockPanel.Dock="Bottom" Width="{Binding ActualWidth, ElementName=rootDock}" Height="40" VerticalAlignment="Bottom" >
+            <DockPanel x:Name="keyboardDockPanel" DockPanel.Dock="Bottom" Width="{Binding ActualWidth, ElementName=rootDock}" Height="40" VerticalAlignment="Bottom" Visibility="Collapsed" >
                 <Button DockPanel.Dock="Left" Content="@" TextBlock.TextAlignment="Center" Width="45" FontWeight="Bold" HorizontalAlignment="Left"/>
                 <TextBox DockPanel.Dock="Left" TextWrapping="Wrap" Text="{Binding TypingMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </DockPanel>

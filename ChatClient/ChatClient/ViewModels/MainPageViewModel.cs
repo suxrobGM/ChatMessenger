@@ -19,6 +19,7 @@ namespace ChatClient.ViewModels
         private ChatItem selectedChatItem;
         private string groupName;
 
+
         public string GroupName
         {
             get => groupName;
@@ -27,7 +28,6 @@ namespace ChatClient.ViewModels
                 SetProperty(ref groupName, value);
             }
         }
-      
         public MessageControlState MessageControlStateProperty
         {
             get => messageControlState;
@@ -47,27 +47,25 @@ namespace ChatClient.ViewModels
             }
         }
 
+
         public MainPageViewModel(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
-          
         }
+
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return true;
         }
-
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             regionNavigationJournal = navigationContext.NavigationService.Journal;
         }
-
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             
         }
-
         private void ChangeState(ChatItemType chatItemType)
         {
             switch (chatItemType)

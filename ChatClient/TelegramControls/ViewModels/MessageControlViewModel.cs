@@ -33,12 +33,14 @@ namespace TelegramControls.ViewModels
         private string typingMessage;
         private string groupName;
         private int groupMembers;
+
        
         public string GroupName { get => groupName; set { SetProperty(ref groupName, value); } }
         public string TypingMessage { get => typingMessage; set { SetProperty(ref typingMessage, value); } }
         public int GroupMembers { get => groupMembers; set { SetProperty(ref groupMembers, value); } }       
         public ObservableCollection<MessageItem> StackMessages { get; set; }
         public DelegateCommand EnterKeyCommand { get; }
+
 
         public MessageControlViewModel()
         {

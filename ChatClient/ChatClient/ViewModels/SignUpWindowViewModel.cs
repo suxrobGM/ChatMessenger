@@ -17,6 +17,7 @@ namespace ChatClient.ViewModels
         private string login;
         private bool agreementChecked;
 
+
         public string Login { get => login; set { SetProperty(ref login, value); RegisterCommand.RaiseCanExecuteChanged(); } }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -24,6 +25,7 @@ namespace ChatClient.ViewModels
         public string TelephoneNumber { get; set; }
         public bool AgreementChecked { get => agreementChecked; set { SetProperty(ref agreementChecked, value); RegisterCommand.RaiseCanExecuteChanged(); } }
         public DelegateCommand<PasswordBox> RegisterCommand { get; }
+
 
         public SignUpWindowViewModel()
         {
@@ -49,6 +51,7 @@ namespace ChatClient.ViewModels
 
             }, CanExecuteRegisterCommand);
         }
+
 
         private bool CanExecuteRegisterCommand(PasswordBox passwordBox)
         {

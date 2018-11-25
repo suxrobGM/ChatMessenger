@@ -16,6 +16,7 @@ namespace ChatClient.ViewModels
         private IRegionManager regionManager;
         private IRegionNavigationJournal regionNavigationJournal;
 
+
         public DelegateCommand OpenSignUpWindowCommand { get; }
         public DelegateCommand SignInCommand { get; }
         public DelegateCommand<PasswordBox> PasswordChangedCommand { get; }
@@ -28,6 +29,7 @@ namespace ChatClient.ViewModels
                 SignInCommand.RaiseCanExecuteChanged();
             }
         }              
+
 
         public SignInPageViewModel(IRegionManager regionManager) 
         {
@@ -73,17 +75,14 @@ namespace ChatClient.ViewModels
         {
             regionNavigationJournal = navigationContext.NavigationService.Journal;
         }
-
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return true;
         }
-
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             
         }
-
         private bool CanExecuteSignInCommand()
         {
             return loginOrEmail != String.Empty && password.Length > 0;

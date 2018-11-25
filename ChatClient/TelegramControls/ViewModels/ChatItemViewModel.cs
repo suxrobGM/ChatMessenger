@@ -10,6 +10,8 @@ namespace TelegramControls.ViewModels
     public class ChatItemViewModel : BindableBase
     {
         private string itemName;
+
+
         public string ItemName { get => itemName; set { SetProperty(ref itemName, value); } }
     }
 }

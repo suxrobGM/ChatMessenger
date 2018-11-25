@@ -30,7 +30,7 @@
                 </Expander>
             </Grid>
 
-            <Views:MessageControl GroupName="{Binding GroupName}" ControlState="{Binding MessageControlStateProperty, RelativeSource={RelativeSource Mode=FindAncestor}}" DockPanel.Dock="Left">
+            <Views:MessageControl GroupName="{Binding DataContext.GroupName, RelativeSource={RelativeSource AncestorType=Page}, Mode=TwoWay}" ControlState="{Binding DataContext.MessageControlStateProperty, RelativeSource={RelativeSource AncestorType=Page}, Mode=TwoWay}" DockPanel.Dock="Left">
                 <Views:MessageControl.Background>
                     <ImageBrush ImageSource="/ChatClient;component/Resources/background.jpg"/>
                 </Views:MessageControl.Background>
