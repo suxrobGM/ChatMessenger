@@ -9,22 +9,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="460" d:DesignWidth="210">
     <Grid>
-        <StackPanel Background="#FFE5E5E5">
-            <StackPanel>
-                <StackPanel.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#BF000000" Offset="0"/>
-                        <GradientStop Color="#BF489CBA" Offset="1"/>
-                    </LinearGradientBrush>
-                </StackPanel.Background>
-                <Ellipse Width="50" Height="50" Stroke="Black" HorizontalAlignment="Left" Margin="5,5,0,0"/>
-                <TextBlock Text="{Binding FullName}" FontWeight="Bold" Margin="5,0,0,0"/>
-                <TextBlock Text="{Binding Email}" Margin="5,0,0,0"/>
-                <TextBlock Text="{Binding TelephoneNumber}" Margin="5,0,0,0"/>
+        <Expander Header="" IsExpanded="False" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded">
+            <Expander.Effect>
+                <DropShadowEffect BlurRadius="250"/>
+            </Expander.Effect>
+            <StackPanel Background="#FFE5E5E5">
+                <StackPanel>
+                    <StackPanel.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#BF000000" Offset="0"/>
+                            <GradientStop Color="#BF489CBA" Offset="1"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                    <Ellipse Width="50" Height="50" Stroke="Black" HorizontalAlignment="Left" Margin="5,5,0,0"/>
+                    <TextBlock Text="{Binding FullName}" FontWeight="Bold" Margin="5,0,0,0"/>
+                    <TextBlock Text="{Binding Email}" Margin="5,0,0,0"/>
+                    <TextBlock Text="{Binding TelephoneNumber}" Margin="5,0,0,0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Button Content="Settings" FontWeight="Bold"/>
+                    <Button Content="Log out" Command="{Binding ExitCommand}" FontWeight="Bold"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel>
-
-            </StackPanel>
-        </StackPanel>
+        </Expander>
     </Grid>
 </UserControl>

@@ -35,7 +35,7 @@ namespace ChatApi.v1.Controllers
             return usersFromParameters;
         }
 
-        // GET api/values/5
+        // GET api/v1/main/users/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
@@ -63,13 +63,13 @@ namespace ChatApi.v1.Controllers
             return Ok();
         }
 
-        // PUT api/values/5
+        // PUT api/v1/main/users/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/v1/main/users/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

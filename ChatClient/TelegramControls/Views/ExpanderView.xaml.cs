@@ -27,10 +27,26 @@ namespace TelegramControls.Views
             InitializeComponent();
         }
 
+        #region Expander Events
+        private void Expander_Collapsed(object sender, RoutedEventArgs e)
+        {
+            (sender as Expander).Height = 40;
+            (sender as Expander).Width = 40;
+        }
+
+        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            (sender as Expander).Height = 460;
+            (sender as Expander).Width = 210;
+        }
+        #endregion
+
         #region DependencyProperties
         public static readonly DependencyProperty FullNameProperty = DependencyProperty.Register("FullName", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnFullNamePropertyChanged));
         public static readonly DependencyProperty EmailProperty = DependencyProperty.Register("Email", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnEmailPropertyChanged));   
-        public static readonly DependencyProperty TelephoneNumberProperty = DependencyProperty.Register("TelephoneNumber", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnTelephoneNumberPropertyChanged));       
+        public static readonly DependencyProperty TelephoneNumberProperty = DependencyProperty.Register("TelephoneNumber", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnTelephoneNumberPropertyChanged));
+        public static readonly DependencyProperty ExitViewSourceProperty = DependencyProperty.Register("ExitViewSource", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnExitViewNamePropertyChanged));
+        public static readonly DependencyProperty ExitViewRegionNameProperty = DependencyProperty.Register("ExitViewRegionName", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnExitViewRegionNamePropertyChanged));
 
 
         private static void OnFullNamePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -47,6 +63,16 @@ namespace TelegramControls.Views
         {
             var expanderView = d as ExpanderView;
             (expanderView.DataContext as ExpanderViewModel).TelephoneNumber = e.NewValue as string;
+        }
+        private static void OnExitViewNamePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var expanderView = d as ExpanderView;
+            (expanderView.DataContext as ExpanderViewModel).ExitViewSource = e.NewValue as string;
+        }
+        private static void OnExitViewRegionNamePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var expanderView = d as ExpanderView;
+            (expanderView.DataContext as ExpanderViewModel).ExitViewRegionName = e.NewValue as string;
         }
 
 
@@ -69,6 +95,19 @@ namespace TelegramControls.Views
         {
             get { return (string)GetValue(TelephoneNumberProperty); }
             set { SetValue(TelephoneNumberProperty, value); }
+        }
+
+        [Category("Common")]
+        public string ExitViewSource
+        {
+            get { return (string)GetValue(ExitViewSourceProperty); }
+            set { SetValue(ExitViewSourceProperty, value); }
+        }
+        [Category("Common")]
+        public string ExitViewRegionName
+        {
+            get { return (string)GetValue(ExitViewRegionNameProperty); }
+            set { SetValue(ExitViewRegionNameProperty, value); }
         }
         #endregion
     }

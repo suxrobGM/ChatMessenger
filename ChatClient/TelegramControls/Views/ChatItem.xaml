@@ -18,7 +18,7 @@
                 <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="00:00" FontSize="8" Width="21" Height="10" VerticalAlignment="Top"/>
             </WrapPanel>
 
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Message" VerticalAlignment="Top" Width="106" Height="17" Margin="0,0.4,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Last Message" VerticalAlignment="Top" Width="106" Height="17" Margin="0,0.4,0,0"/>
         </DockPanel>
     </Grid>
     

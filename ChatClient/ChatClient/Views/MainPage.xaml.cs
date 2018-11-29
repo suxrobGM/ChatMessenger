@@ -19,18 +19,6 @@ namespace ChatClient.Views
         public MainPage()
         {
             InitializeComponent();          
-        }
-
-        private void Expander_Collapsed(object sender, RoutedEventArgs e)
-        {
-            (sender as Expander).Height = 40;
-            (sender as Expander).Width = 40;
-        }
-
-        private void Expander_Expanded(object sender, RoutedEventArgs e)
-        {
-            (sender as Expander).Height = 460;
-            (sender as Expander).Width = 210;
-        }     
+        }            
     }
 }

@@ -14,7 +14,7 @@ namespace ChatClient.ViewModels
         private string loginOrEmail;
         private SecureString password;
         private IRegionManager regionManager;
-        private IRegionNavigationJournal regionNavigationJournal;
+        private IRegionNavigationJournal _journal;
 
 
         public DelegateCommand OpenSignUpWindowCommand { get; }
@@ -73,7 +73,7 @@ namespace ChatClient.ViewModels
         
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            regionNavigationJournal = navigationContext.NavigationService.Journal;
+            _journal = navigationContext.NavigationService.Journal;
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {

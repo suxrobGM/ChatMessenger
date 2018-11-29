@@ -14,7 +14,7 @@ namespace ChatClient.ViewModels
     public class MainPageViewModel : BaseViewModel, INavigationAware
     {
         private IRegionManager regionManager;
-        private IRegionNavigationJournal regionNavigationJournal;
+        private IRegionNavigationJournal _journal;
         private MessageControlState messageControlState;
         private ChatItem selectedChatItem;
         private string groupName;
@@ -63,11 +63,11 @@ namespace ChatClient.ViewModels
         }
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            regionNavigationJournal = navigationContext.NavigationService.Journal;
+                    
         }
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            
+            _journal = navigationContext.NavigationService.Journal;
         }
         private void ChangeState(ChatItemType chatItemType)
         {

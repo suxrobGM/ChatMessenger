@@ -37,10 +37,11 @@
                     <TextBlock TextWrapping="Wrap" Text="{Binding GroupMembers}" FontWeight="Bold"/>
                 </StackPanel>
             </Grid>
-            <DockPanel x:Name="keyboardDockPanel" DockPanel.Dock="Bottom" Width="{Binding ActualWidth, ElementName=rootDock}" Height="40" VerticalAlignment="Bottom" Visibility="Collapsed" >
-                <Button DockPanel.Dock="Left" Content="@" TextBlock.TextAlignment="Center" Width="45" FontWeight="Bold" HorizontalAlignment="Left"/>
-                <TextBox DockPanel.Dock="Left" TextWrapping="Wrap" Text="{Binding TypingMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            </DockPanel>
+            <StackPanel x:Name="keyboardDockPanel" DockPanel.Dock="Bottom" Orientation="Horizontal" Width="{Binding ActualWidth, ElementName=rootDock}" Height="40" VerticalAlignment="Bottom" Visibility="Collapsed">
+                <Button Content="@" TextBlock.TextAlignment="Center" Width="45" FontWeight="Bold" HorizontalAlignment="Left"/>
+                <TextBox TextWrapping="Wrap" Text="{Binding TypingMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="411"/>
+                <Button Content=">>" Width="45" HorizontalAlignment="Right" FontWeight="Bold"/>
+            </StackPanel>
             <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding StackMessages}" Background="{Binding BackgroundImageSource, Mode=TwoWay}" BorderBrush="{x:Null}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>

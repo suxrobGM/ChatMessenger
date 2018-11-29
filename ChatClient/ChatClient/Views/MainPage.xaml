@@ -13,33 +13,47 @@
       d:DesignWidth="900"
       Title="Chat Client">
 
-    <Grid>
+    <Grid x:Name="mainGrid">
         <DockPanel>
             <Grid DockPanel.Dock="Left" VerticalAlignment="Top">
-                <Views:TopBar Height="50" VerticalAlignment="Top" Width="230"/>
-                <ListBox SelectedItem="{Binding SelectedChatItem}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Width="230" Background="#FFCBE5FF" Margin="0,50,0,-647.4" >
+                <ListBox 
+                    SelectedItem="{Binding SelectedChatItem}" 
+                    Height="{Binding ElementName=mainGrid, Path=ActualHeight}"
+                    Width="261"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                    HorizontalAlignment="Left"                     
+                    Background="#FFCBE5FF">
+                    <Views:TopBar Height="50" VerticalAlignment="Top" Width="251"/>
                     <Views:ChatItem ItemName="TestGroup1" Width="210"/>
                     <Views:ChatItem Width="210"/>
                     <Views:ChatItem Width="210"/>
                 </ListBox>
-                <Expander Header="" HorizontalAlignment="Left" Height="40" Margin="10,10,0,-420.4" VerticalAlignment="Top" Width="40" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded">
-                    <Expander.Effect>
-                        <DropShadowEffect BlurRadius="250" RenderingBias="Quality"/>
-                    </Expander.Effect>
+
+                <!-- Expander -->
+                <ContentControl Margin="20,20,-0.2,43">
                     <Views:ExpanderView 
                         FullName="{Binding DataContext.FullName, RelativeSource={RelativeSource AncestorType=Page}}"
                         Email="{Binding DataContext.Email, RelativeSource={RelativeSource AncestorType=Page}}"
-                        TelephoneNumber="{Binding DataContext.TelephoneNumber, RelativeSource={RelativeSource AncestorType=Page}}">
+                        TelephoneNumber="{Binding DataContext.TelephoneNumber, RelativeSource={RelativeSource AncestorType=Page}}" 
+                        ExitViewRegionName="ContentRegionMainWindow" 
+                        ExitViewSource="SignInPage" 
+                        Margin="0,0,-165.2,-272" 
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Left">
                     </Views:ExpanderView>
-                </Expander>
+                </ContentControl>
             </Grid>
 
-            <Views:MessageControl GroupName="{Binding DataContext.GroupName, RelativeSource={RelativeSource AncestorType=Page}, Mode=TwoWay}" ControlState="{Binding DataContext.MessageControlStateProperty, RelativeSource={RelativeSource AncestorType=Page}, Mode=TwoWay}" DockPanel.Dock="Left">
+            <Views:MessageControl 
+                GroupName="{Binding DataContext.GroupName, RelativeSource={RelativeSource AncestorType=Page}, Mode=TwoWay}" 
+                ControlState="{Binding DataContext.MessageControlStateProperty, RelativeSource={RelativeSource AncestorType=Page}, Mode=TwoWay}" 
+                DockPanel.Dock="Right" 
+                Width="641">
                 <Views:MessageControl.Background>
                     <ImageBrush ImageSource="/ChatClient;component/Resources/background.jpg"/>
                 </Views:MessageControl.Background>
             </Views:MessageControl>
         </DockPanel>
+        
     </Grid>
-
 </Page>
