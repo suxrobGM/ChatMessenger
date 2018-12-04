@@ -20,14 +20,14 @@ namespace ChatApi.v1.Controllers
 
         // GET api/v1/main/users
         [HttpGet]
-        public IEnumerable<User> Get(int? id, string login, string email, string telephoneNumber)
+        public IEnumerable<User> Get(int? id, string username, string email, string telephoneNumber)
         {
-            if (id == null && login == null && email == null && telephoneNumber == null)
+            if (id == null && username == null && email == null && telephoneNumber == null)
                 return db.Users;
 
             var usersFromParameters = from user in db.Users
                                       where (id.HasValue && user.Id == id) ||
-                                      (login != null && user.Login == login) ||
+                                      (username != null && user.Username == username) ||
                                       (email != null && user.Email == email) ||
                                       (telephoneNumber != null && user.TelephoneNumber == telephoneNumber)
                                       select user;
@@ -49,10 +49,10 @@ namespace ChatApi.v1.Controllers
             if (user == null)
                 return BadRequest();
 
-            var userExists = db.Users.Where(u => u.Login == user.Login);
+            var userExists = db.Users.Where(u => u.Username == user.Username);
 
             if (userExists.Any())
-                return StatusCode(403); // ERROR 403 (forbidden) user login exists in the database
+                return StatusCode(403); // ERROR 403 (forbidden) such username exists in the database
 
             var missingIds = Enumerable.Range(1, db.Users.LastOrDefault().Id + 1).Except(db.Users.Select(u => u.Id));
             user.Id = missingIds.FirstOrDefault();

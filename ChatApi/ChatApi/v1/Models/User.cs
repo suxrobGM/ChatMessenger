@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace TestEntityFrameworkCore.Models
+namespace ChatApi.v1.Models
 {
     public class User
     {
@@ -30,7 +30,7 @@ namespace TestEntityFrameworkCore.Models
         }       
         
         public int Id { get; set; }
-        public string Login { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

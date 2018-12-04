@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TestEntityFrameworkCore.Models
+namespace ChatApi.v1.Models
 {
     public class Group
     {      
