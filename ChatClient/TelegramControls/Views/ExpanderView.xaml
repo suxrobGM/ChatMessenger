@@ -22,6 +22,7 @@
                         </LinearGradientBrush>
                     </StackPanel.Background>
                     <Ellipse Width="50" Height="50" Stroke="Black" HorizontalAlignment="Left" Margin="5,5,0,0"/>
+                    <TextBlock Text="{Binding Username}" FontWeight="Bold" Margin="5,0,0,0"/>
                     <TextBlock Text="{Binding FullName}" FontWeight="Bold" Margin="5,0,0,0"/>
                     <TextBlock Text="{Binding Email}" Margin="5,0,0,0"/>
                     <TextBlock Text="{Binding TelephoneNumber}" Margin="5,0,0,0"/>

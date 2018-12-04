@@ -45,7 +45,7 @@ namespace ChatClient.Models.ApiClient
         #region Operations
         public async Task<bool> CheckUserLoginAsync(NetworkCredential networkCredential)
         {         
-            var response = await request.GetAsync($"main/users?login={networkCredential.UserName}&email={networkCredential.UserName}");
+            var response = await request.GetAsync($"main/users?username={networkCredential.UserName}&email={networkCredential.UserName}");
             if (response.IsSuccessStatusCode)
             {
                 try
@@ -57,7 +57,7 @@ namespace ChatClient.Models.ApiClient
                         Email = jArray[0]["email"].ToString(),
                         FirstName = jArray[0]["firstName"].ToString(),
                         LastName = jArray[0]["lastName"].ToString(),
-                        Username = jArray[0]["login"].ToString(),
+                        Username = jArray[0]["username"].ToString(),
                         TelephoneNumber = jArray[0]["telephoneNumber"].ToString(),
                         Password = new NetworkCredential(null, jArray[0]["password"].ToString()).SecurePassword,
                         //Photo = jArray[0]["photo"]

@@ -10,57 +10,64 @@ namespace ChatApi.v1.Controllers
     [Route("api/v1/main/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
-    {
-        private readonly DatabaseContext db;
-
+    {       
         public UsersController()
         {
-            db = new DatabaseContext();
+            
         }
 
         // GET api/v1/main/users
         [HttpGet]
-        public IEnumerable<User> Get(int? id, string username, string email, string telephoneNumber)
-        {
-            if (id == null && username == null && email == null && telephoneNumber == null)
-                return db.Users;
+        public ActionResult<IEnumerable<User>> Get(int? id, string username, string email, string telephoneNumber)
+        {            
+            using (var db = new DatabaseContext())
+            {
+                if (id == null && username == null && email == null && telephoneNumber == null)
+                    return db.Users.ToList();
 
-            var usersFromParameters = from user in db.Users
-                                      where (id.HasValue && user.Id == id) ||
-                                      (username != null && user.Username == username) ||
-                                      (email != null && user.Email == email) ||
-                                      (telephoneNumber != null && user.TelephoneNumber == telephoneNumber)
-                                      select user;
+                var usersFromParameters = from user in db.Users
+                                          where (id.HasValue && user.Id == id) ||
+                                          (username != null && user.Username == username) ||
+                                          (email != null && user.Email == email) ||
+                                          (telephoneNumber != null && user.TelephoneNumber == telephoneNumber)
+                                          select user;
 
-            return usersFromParameters;
+                return usersFromParameters.ToList();
+            }       
         }
 
         // GET api/v1/main/users/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<User> Get(int id)
         {
-            return "value";
+            using (var db = new DatabaseContext())
+            {
+                return db.Users.Where(u => u.Id == id).FirstOrDefault();
+            }      
         }
 
         // POST api/v1/main/users
         [HttpPost]
         public IActionResult AddNewUser([FromBody] User user)
         {
-            if (user == null)
-                return BadRequest();
+            using (var db = new DatabaseContext())
+            {
+                if (user == null)
+                    return BadRequest();
 
-            var userExists = db.Users.Where(u => u.Username == user.Username);
+                var userExists = db.Users.Where(u => u.Username == user.Username);
 
-            if (userExists.Any())
-                return StatusCode(403); // ERROR 403 (forbidden) such username exists in the database
+                if (userExists.Any())
+                    return StatusCode(403); // ERROR 403 (forbidden) such username exists in the database
 
-            var missingIds = Enumerable.Range(1, db.Users.LastOrDefault().Id + 1).Except(db.Users.Select(u => u.Id));
-            user.Id = missingIds.FirstOrDefault();
-            user.RegistrationDate = DateTime.Now;
-            db.Users.Add(user);
-            db.SaveChangesAsync();
+                var missingIds = Enumerable.Range(1, db.Users.LastOrDefault().Id + 1).Except(db.Users.Select(u => u.Id));
+                user.Id = missingIds.FirstOrDefault();
+                user.RegistrationDate = DateTime.Now;
+                db.Users.Add(user);
+                db.SaveChangesAsync();
 
-            return Ok();
+                return Ok();
+            }        
         }
 
         // PUT api/v1/main/users/5

@@ -6,26 +6,17 @@ using System.Text;
 namespace ChatApi.v1.Models
 {
     public class UserGroup
-    {
-        private User user;
-        private Group group;
-        private ILazyLoader lazyLoader;
-
+    {    
         public UserGroup()
         {
 
-        }
-        public UserGroup(ILazyLoader lazyLoader)
-        {
-            this.lazyLoader = lazyLoader;
-        }
+        }      
 
         public int UserId { get; set; }
         public bool IsAdmin { get; set; }
-        public bool IsOwnerGroup { get; set; }
-        public User User { get => lazyLoader.Load(this, ref user); set => user = value; }
-
-        public int GroupId { get; set; }
-        public Group Group { get => lazyLoader.Load(this, ref group); set => group = value; }
+        public bool IsOwnerGroup { get; set; }      
+        public int GroupId { get; set; }     
+        public virtual User User { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

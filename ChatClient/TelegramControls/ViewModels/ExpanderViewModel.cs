@@ -11,6 +11,7 @@ namespace TelegramControls.ViewModels
 {
     public class ExpanderViewModel : BindableBase
     {
+        private string username;
         private string fullName;
         private string email;
         private string telephoneNumber;
@@ -18,6 +19,7 @@ namespace TelegramControls.ViewModels
         private string exitViewRegionName;
         private IRegionManager regionManager;
 
+        public string Username { get => username; set { SetProperty(ref username, value); } }
         public string FullName { get => fullName; set { SetProperty(ref fullName, value); } }
         public string Email { get => email; set { SetProperty(ref email, value); } }
         public string TelephoneNumber { get => telephoneNumber; set { SetProperty(ref telephoneNumber, value); } }

@@ -17,7 +17,7 @@ namespace ChatClient.Models
         private string firstName;
         private string lastName;
         private string telephoneNumber;
-        private byte[] photo;
+        private byte[] mainPhoto;
 
 
         public string Username { get => username; set { SetProperty(ref username, value); } }
@@ -26,7 +26,7 @@ namespace ChatClient.Models
         public string FirstName { get => firstName; set { SetProperty(ref firstName, value); } }
         public string LastName { get => lastName; set { SetProperty(ref lastName, value); } }
         public string TelephoneNumber { get => telephoneNumber; set { SetProperty(ref telephoneNumber, value); } }
-        public byte[] Photo { get => photo; set { SetProperty(ref photo, value); } }
+        public byte[] MainPhoto { get => mainPhoto; set { SetProperty(ref mainPhoto, value); } }
 
 
         public string GetJsonFormat()
@@ -44,8 +44,8 @@ namespace ChatClient.Models
                 stringBuilder.Append($"'firstName': '{FirstName}',");
             if(LastName != null)
                 stringBuilder.Append($"'lastName': '{LastName}'");
-            if (Photo != null)
-                stringBuilder.Append($"'photo': '{ByteToBinaryView(Photo)}'");
+            if (MainPhoto != null)
+                stringBuilder.Append($"'photo': '{ByteToBinaryView(MainPhoto)}'");
 
             stringBuilder.Append("}");
             return stringBuilder.ToString();

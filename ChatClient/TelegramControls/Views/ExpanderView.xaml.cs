@@ -41,14 +41,19 @@ namespace TelegramControls.Views
         }
         #endregion
 
-        #region DependencyProperties
+        #region DependencyProperties                         
+        public static readonly DependencyProperty UsernameProperty = DependencyProperty.Register("Username", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnUsernamePropertyChanged));
         public static readonly DependencyProperty FullNameProperty = DependencyProperty.Register("FullName", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnFullNamePropertyChanged));
         public static readonly DependencyProperty EmailProperty = DependencyProperty.Register("Email", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnEmailPropertyChanged));   
         public static readonly DependencyProperty TelephoneNumberProperty = DependencyProperty.Register("TelephoneNumber", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnTelephoneNumberPropertyChanged));
         public static readonly DependencyProperty ExitViewSourceProperty = DependencyProperty.Register("ExitViewSource", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnExitViewNamePropertyChanged));
         public static readonly DependencyProperty ExitViewRegionNameProperty = DependencyProperty.Register("ExitViewRegionName", typeof(string), typeof(ExpanderView), new PropertyMetadata(null, OnExitViewRegionNamePropertyChanged));
 
-
+        private static void OnUsernamePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var expanderView = d as ExpanderView;
+            (expanderView.DataContext as ExpanderViewModel).Username = e.NewValue as string;
+        }
         private static void OnFullNamePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var expanderView = d as ExpanderView;
@@ -75,7 +80,12 @@ namespace TelegramControls.Views
             (expanderView.DataContext as ExpanderViewModel).ExitViewRegionName = e.NewValue as string;
         }
 
-
+        [Category("Common")]
+        public string Username
+        {
+            get { return (string)GetValue(UsernameProperty); }
+            set { SetValue(UsernameProperty, value); }
+        }
         [Category("Common")]
         public string FullName
         {

@@ -11,7 +11,7 @@ namespace ChatClient.ViewModels
 {
     public class SignInPageViewModel : BaseViewModel, INavigationAware
     {
-        private string loginOrEmail;
+        private string username;
         private SecureString password;
         private IRegionManager regionManager;
         private IRegionNavigationJournal _journal;
@@ -20,12 +20,12 @@ namespace ChatClient.ViewModels
         public DelegateCommand OpenSignUpWindowCommand { get; }
         public DelegateCommand SignInCommand { get; }
         public DelegateCommand<PasswordBox> PasswordChangedCommand { get; }
-        public string LoginOrEmail
+        public string Username
         {
-            get => loginOrEmail;
+            get => username;
             set
             {
-                SetProperty(ref loginOrEmail, value);
+                SetProperty(ref username, value);
                 SignInCommand.RaiseCanExecuteChanged();
             }
         }              
@@ -44,7 +44,7 @@ namespace ChatClient.ViewModels
 
             SignInCommand = new DelegateCommand(async () =>
             {
-                var result = await Model.PrivateApiClient.CheckUserLoginAsync(new NetworkCredential(loginOrEmail, password));
+                var result = await Model.PrivateApiClient.CheckUserLoginAsync(new NetworkCredential(username, password));
 
                 if(result)
                 {
@@ -52,7 +52,7 @@ namespace ChatClient.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Login or password is incorrect");
+                    MessageBox.Show("Username or password is incorrect");
                 }
             }, 
                 CanExecuteSignInCommand
@@ -85,7 +85,7 @@ namespace ChatClient.ViewModels
         }
         private bool CanExecuteSignInCommand()
         {
-            return loginOrEmail != String.Empty && password.Length > 0;
+            return username != String.Empty && password.Length > 0;
         }
     }
 }

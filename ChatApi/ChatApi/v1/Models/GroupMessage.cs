@@ -6,24 +6,16 @@ using System.Text;
 namespace ChatApi.v1.Models
 {
     public class GroupMessage : Message
-    {
-        private Group group;
-        private User sender;
-        private ILazyLoader lazyLoader;
-
+    {   
         public GroupMessage()
         {
 
-        }
-        public GroupMessage(ILazyLoader lazyLoader)
-        {
-            this.lazyLoader = lazyLoader;
-        }
+        }       
 
-        public int GroupId { get; set; }
-        public Group Group { get => lazyLoader.Load(this, ref group); set => group = value; }
+        public int GroupId { get; set; }      
 
-        public int GroupSenderUserId { get; set; }
-        public User Sender { get => lazyLoader.Load(this, ref sender); set => sender = value; }
+        public int GroupSenderUserId { get; set; }      
+        public virtual Group Group { get; set; }
+        public virtual User Sender { get; set; }
     }
 }

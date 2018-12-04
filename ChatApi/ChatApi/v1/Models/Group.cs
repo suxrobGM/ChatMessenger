@@ -7,26 +7,20 @@ using System.Text;
 namespace ChatApi.v1.Models
 {
     public class Group
-    {      
-        private ICollection<UserGroup> userGroups;
-        private ICollection<GroupMessage> groupMessages;       
-        private ILazyLoader lazyLoader;
-
+    {            
         public Group()
         {
             UserGroups = new List<UserGroup>();
             GroupMessages = new List<GroupMessage>();          
-        }
-        public Group(ILazyLoader lazyLoader)
-        {
-            this.lazyLoader = lazyLoader;
-        }
+        }      
+
 
         public int Id { get; set; }
-        public string Name { get; set; }             
-        public ICollection<UserGroup> UserGroups { get => lazyLoader.Load(this, ref userGroups); set => userGroups = value; }
-        public ICollection<GroupMessage> GroupMessages { get => lazyLoader.Load(this, ref groupMessages); set => groupMessages = value; }
-        
+        public string Name { get; set; }      
+        public virtual ICollection<UserGroup> UserGroups { get; set; }
+        public virtual ICollection<GroupMessage> GroupMessages { get; set; }
+
+
         public IEnumerable<User> GetAdmins()
         {
             return UserGroups.Where(u => u.IsAdmin == true).Select(u => u.User);

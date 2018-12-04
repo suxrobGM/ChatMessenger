@@ -31,7 +31,8 @@
 
                 <!-- Expander -->
                 <ContentControl Margin="20,20,-0.2,43">
-                    <Views:ExpanderView 
+                    <Views:ExpanderView
+                        Username="{Binding DataContext.Username, RelativeSource={RelativeSource AncestorType=Page}}"
                         FullName="{Binding DataContext.FullName, RelativeSource={RelativeSource AncestorType=Page}}"
                         Email="{Binding DataContext.Email, RelativeSource={RelativeSource AncestorType=Page}}"
                         TelephoneNumber="{Binding DataContext.TelephoneNumber, RelativeSource={RelativeSource AncestorType=Page}}" 

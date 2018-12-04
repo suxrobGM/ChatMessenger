@@ -46,6 +46,7 @@ namespace ChatClient.ViewModels
                 GroupName = selectedChatItem.ItemName;
             }
         }
+        public string Username { get => Model.CurrentUser.Username; }
         public string FullName { get => Model.CurrentUser.FirstName + " " + Model.CurrentUser.LastName; }
         public string Email { get => Model.CurrentUser.Email; }
         public string TelephoneNumber { get => Model.CurrentUser.TelephoneNumber; }

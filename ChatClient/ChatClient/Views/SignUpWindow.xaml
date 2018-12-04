@@ -15,20 +15,36 @@
 
     <Grid Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
         <WrapPanel HorizontalAlignment="Left" Height="291" Margin="10,10,0,0" VerticalAlignment="Top" Width="418">
-            <TextBlock TextWrapping="Wrap" Text="*Username:" Width="148" FontWeight="Bold"/>
+            <!--Username-->
+            <TextBlock TextWrapping="Wrap" Text="*Username:" Width="133" FontWeight="Bold"/>
+            <TextBlock Text="@" FontWeight="Bold" FontSize="16"/>
             <TextBox Height="23" TextWrapping="Wrap" Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="245" FontWeight="Bold"/>
+            
+            <!--First name-->
             <TextBlock TextWrapping="Wrap" Text="First Name:" Width="148" FontWeight="Bold"/>
             <TextBox Height="23" TextWrapping="Wrap" Text="{Binding FirstName}" Width="245" FontWeight="Bold"/>
+            
+            <!--Last name-->
             <TextBlock TextWrapping="Wrap" Text="Last Name:" Width="148" FontWeight="Bold"/>
             <TextBox Height="23" TextWrapping="Wrap" Text="{Binding LastName}" Width="245" FontWeight="Bold"/>
+            
+            <!--Email-->
             <TextBlock TextWrapping="Wrap" Text="Email:" Width="148" FontWeight="Bold"/>
             <TextBox Height="23" TextWrapping="Wrap" Text="{Binding Email}" Width="245" FontWeight="Bold"/>
+            
+            <!--Telephone number-->
             <TextBlock TextWrapping="Wrap" Text="Telephone Number:" Width="148" FontWeight="Bold"/>
             <TextBox Height="23" TextWrapping="Wrap" Text="{Binding TelephoneNumber}" Width="245" FontWeight="Bold"/>
+            
+            <!--Password-->
             <TextBlock TextWrapping="Wrap" Text="*Password:" Width="148" FontWeight="Bold"/>
             <PasswordBox x:Name="passwordBox" Height="23" Width="245" FontWeight="Bold"/>
+            
+            <!--Confirm password-->
             <TextBlock TextWrapping="Wrap" Text="*Confirm Password:" Width="148" FontWeight="Bold"/>
             <PasswordBox Height="23" Width="245" FontWeight="Bold"/>
+            
+            <!--Others-->
             <TextBlock TextWrapping="Wrap" Text="* - required data, the format of telephone number must be in the international standart with prefix '+' e.g.: +998901234567" Width="391" Height="35"/>
             <CheckBox Content="*I confirm with all agreements" Width="338" FontWeight="Bold" IsChecked="{Binding AgreementChecked, Mode=TwoWay}" Height="23"/>
             <Button Content="Register" Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=passwordBox}" Width="95" FontWeight="Bold"/>

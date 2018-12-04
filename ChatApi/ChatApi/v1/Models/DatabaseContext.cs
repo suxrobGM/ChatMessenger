@@ -16,11 +16,11 @@ namespace ChatApi.v1.Models
 
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<Photo> Photos { get; set; }    
-        public DbSet<UserGroup> UserGroups { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }    
+        public virtual DbSet<UserGroup> UserGroups { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
