@@ -4,9 +4,10 @@ using System.Text;
 
 namespace TestEntityFrameworkCore.Models
 {
-    public class Photo
+    public abstract class Message
     {
         public int Id { get; set; }
-        public byte[] PhotoBinary { get; set; }
+        public string Text { get; set; }
+        public bool IsRead { get; set; }
     }
 }

@@ -23,9 +23,9 @@ namespace ChatApi.v1.Controllers
         public IEnumerable<User> Get(int? id, string login, string email, string telephoneNumber)
         {
             if (id == null && login == null && email == null && telephoneNumber == null)
-                return db.User;
+                return db.Users;
 
-            var usersFromParameters = from user in db.User
+            var usersFromParameters = from user in db.Users
                                       where (id.HasValue && user.Id == id) ||
                                       (login != null && user.Login == login) ||
                                       (email != null && user.Email == email) ||
@@ -49,15 +49,15 @@ namespace ChatApi.v1.Controllers
             if (user == null)
                 return BadRequest();
 
-            var userExists = db.User.Where(u => u.Login == user.Login);
+            var userExists = db.Users.Where(u => u.Login == user.Login);
 
             if (userExists.Any())
                 return StatusCode(403); // ERROR 403 (forbidden) user login exists in the database
 
-            var missingIds = Enumerable.Range(1, db.User.LastOrDefault().Id + 1).Except(db.User.Select(u => u.Id));
+            var missingIds = Enumerable.Range(1, db.Users.LastOrDefault().Id + 1).Except(db.Users.Select(u => u.Id));
             user.Id = missingIds.FirstOrDefault();
             user.RegistrationDate = DateTime.Now;
-            db.User.Add(user);
+            db.Users.Add(user);
             db.SaveChangesAsync();
 
             return Ok();

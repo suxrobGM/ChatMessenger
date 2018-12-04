@@ -1,40 +1,51 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using System;
 using System.Collections.Generic;
-using System.Security;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
 
-namespace ChatApi.v1.Models
+namespace TestEntityFrameworkCore.Models
 {
-    public partial class User
+    public class User
     {
+        private ICollection<PersonalMessage> sentPersonalMessages;
+        private ICollection<PersonalMessage> recievedPersonalMessages;
+        private ICollection<GroupMessage> groupMessages;
+        private ICollection<UserGroup> userGroups;
+        private ICollection<PersonalPhoto> photos;
+        private ILazyLoader lazyLoader;
+
         public User()
         {
-            GroupAdmin = new HashSet<Group>();
-            GroupMessage = new HashSet<GroupMessage>();
-            GroupMessageState = new HashSet<GroupMessageState>();
-            GroupOwner = new HashSet<Group>();
-            PersonalMessageReceivedUser = new HashSet<PersonalMessage>();
-            PersonalMessageSenderUser = new HashSet<PersonalMessage>();
-            PersonalMessageState = new HashSet<PersonalMessageState>();
+            SentPersonalMessages = new List<PersonalMessage>();
+            RecievedPersonalMessages = new List<PersonalMessage>();
+            GroupMessages = new List<GroupMessage>();
+            UserGroups = new List<UserGroup>();           
+            Photos = new List<PersonalPhoto>();
         }
-
+        public User(ILazyLoader lazyLoader)
+        {
+            this.lazyLoader = lazyLoader;
+        }       
+        
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public string Email { get; set; }
-        public string TelephoneNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int? MainPhotoId { get; set; }
+        public string Email { get; set; }
+        public string TelephoneNumber { get; set; }
         public DateTime? RegistrationDate { get; set; }
-
-        public Photo MainPhoto { get; set; }
-        public GroupMember GroupMember { get; set; }
-        public ICollection<Group> GroupAdmin { get; set; }
-        public ICollection<GroupMessage> GroupMessage { get; set; }
-        public ICollection<GroupMessageState> GroupMessageState { get; set; }
-        public ICollection<Group> GroupOwner { get; set; }
-        public ICollection<PersonalMessage> PersonalMessageReceivedUser { get; set; }
-        public ICollection<PersonalMessage> PersonalMessageSenderUser { get; set; }
-        public ICollection<PersonalMessageState> PersonalMessageState { get; set; }
+        public ICollection<PersonalMessage> SentPersonalMessages { get => lazyLoader.Load(this, ref sentPersonalMessages); set => sentPersonalMessages = value; }
+        public ICollection<PersonalMessage> RecievedPersonalMessages { get => lazyLoader.Load(this, ref recievedPersonalMessages); set => recievedPersonalMessages = value; }
+        public ICollection<GroupMessage> GroupMessages { get => lazyLoader.Load(this, ref groupMessages); set => groupMessages = value; }       
+        public ICollection<UserGroup> UserGroups { get => lazyLoader.Load(this, ref userGroups); set => userGroups = value; }
+        public ICollection<PersonalPhoto> Photos { get => lazyLoader.Load(this, ref photos); set => photos = value; }
+        
+        public PersonalPhoto GetMainPhoto()
+        {
+            return Photos.FirstOrDefault();
+        }
     }
 }

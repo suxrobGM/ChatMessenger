@@ -9,8 +9,7 @@ namespace ChatApi.v1.Controllers
     [Route("api/v1/[controller]")]
     [ApiController]
     public class MainController : ControllerBase
-    {      
-
+    {     
         public MainController()
         {
             
