@@ -11,7 +11,7 @@ namespace ChatClient.Models
 {
     public class User : BindableBase
     {
-        private string login;
+        private string username;
         private SecureString password;
         private string email;
         private string firstName;
@@ -20,7 +20,7 @@ namespace ChatClient.Models
         private byte[] photo;
 
 
-        public string Login { get => login; set { SetProperty(ref login, value); } }
+        public string Username { get => username; set { SetProperty(ref username, value); } }
         public SecureString Password { get => password; set { SetProperty(ref password, value); } }
         public string Email { get => email; set { SetProperty(ref email, value); } }
         public string FirstName { get => firstName; set { SetProperty(ref firstName, value); } }
@@ -33,8 +33,8 @@ namespace ChatClient.Models
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("{");
-            stringBuilder.Append($"'login': '{Login}',");
-            stringBuilder.Append($"'password': '{new NetworkCredential(Login, Password).Password}',");
+            stringBuilder.Append($"'login': '{Username}',");
+            stringBuilder.Append($"'password': '{new NetworkCredential(Username, Password).Password}',");
 
             if (Email != null)
                 stringBuilder.Append($"'email': '{Email}',");

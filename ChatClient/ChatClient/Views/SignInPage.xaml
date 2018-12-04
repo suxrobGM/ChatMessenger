@@ -18,9 +18,9 @@
     <Grid Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
         <Border BorderBrush="Black" Height="129" Margin="218,91,218,229.6" Width="364" BorderThickness="1">
             <WrapPanel HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="344" Margin="9.2,9.2,0,0">
-                <TextBlock TextWrapping="Wrap" Text="Email or Login:" Height="24" Width="109" FontWeight="Bold" FontSize="14"/>
+                <TextBlock TextWrapping="Wrap" Text="Email or Username:" Height="24" Width="129" FontWeight="Bold" FontSize="14"/>
                 <TextBox Height="24" TextWrapping="Wrap" Text="{Binding LoginOrEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="210" FontSize="14"/>
-                <TextBlock TextWrapping="Wrap" Text="Password:" Height="24" Width="109" FontWeight="Bold" FontSize="14"/>
+                <TextBlock TextWrapping="Wrap" Text="Password:" Height="24" Width="129" FontWeight="Bold" FontSize="14"/>
                 <PasswordBox x:Name="passwordBox"  Password="" Height="24" Width="210" FontSize="14">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PasswordChanged">

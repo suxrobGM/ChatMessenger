@@ -15,8 +15,8 @@
 
     <Grid Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
         <WrapPanel HorizontalAlignment="Left" Height="291" Margin="10,10,0,0" VerticalAlignment="Top" Width="418">
-            <TextBlock TextWrapping="Wrap" Text="*Login:" Width="148" FontWeight="Bold"/>
-            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="245" FontWeight="Bold"/>
+            <TextBlock TextWrapping="Wrap" Text="*Username:" Width="148" FontWeight="Bold"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="245" FontWeight="Bold"/>
             <TextBlock TextWrapping="Wrap" Text="First Name:" Width="148" FontWeight="Bold"/>
             <TextBox Height="23" TextWrapping="Wrap" Text="{Binding FirstName}" Width="245" FontWeight="Bold"/>
             <TextBlock TextWrapping="Wrap" Text="Last Name:" Width="148" FontWeight="Bold"/>

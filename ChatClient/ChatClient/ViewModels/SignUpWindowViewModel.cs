@@ -14,11 +14,11 @@ namespace ChatClient.ViewModels
 {
     public class SignUpWindowViewModel : BaseViewModel
     {
-        private string login;
+        private string username;
         private bool agreementChecked;
 
 
-        public string Login { get => login; set { SetProperty(ref login, value); RegisterCommand.RaiseCanExecuteChanged(); } }
+        public string Username { get => username; set { SetProperty(ref username, value); RegisterCommand.RaiseCanExecuteChanged(); } }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -34,8 +34,8 @@ namespace ChatClient.ViewModels
                
                 var result = await Model.PrivateApiClient.AddNewUserAsync(new User
                 {
-                    Login = Login,
-                    Password = new System.Net.NetworkCredential(Login, passwordBox.Password).SecurePassword,
+                    Username = Username,
+                    Password = new System.Net.NetworkCredential(Username, passwordBox.Password).SecurePassword,
                     Email = Email,
                     TelephoneNumber = TelephoneNumber,
                     FirstName = FirstName,
@@ -45,7 +45,7 @@ namespace ChatClient.ViewModels
                 if (result == 200)
                     MessageBox.Show("New user has successfully registered!");
                 else if (result == 403)
-                    MessageBox.Show("Login already exists");
+                    MessageBox.Show("Username already exists");
                 else if (result == 500)
                     MessageBox.Show("Server internal error");
 
@@ -55,7 +55,7 @@ namespace ChatClient.ViewModels
 
         private bool CanExecuteRegisterCommand(PasswordBox passwordBox)
         {
-            return Login != String.Empty && AgreementChecked;
+            return Username != String.Empty && AgreementChecked;
         }
     }
 }

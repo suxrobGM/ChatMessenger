@@ -57,7 +57,7 @@ namespace ChatClient.Models.ApiClient
                         Email = jArray[0]["email"].ToString(),
                         FirstName = jArray[0]["firstName"].ToString(),
                         LastName = jArray[0]["lastName"].ToString(),
-                        Login = jArray[0]["login"].ToString(),
+                        Username = jArray[0]["login"].ToString(),
                         TelephoneNumber = jArray[0]["telephoneNumber"].ToString(),
                         Password = new NetworkCredential(null, jArray[0]["password"].ToString()).SecurePassword,
                         //Photo = jArray[0]["photo"]
@@ -93,7 +93,7 @@ namespace ChatClient.Models.ApiClient
                     statusCode = 200; // OK
 
                 if ((int)response.StatusCode == 403)
-                    statusCode = 403; // Login exists 
+                    statusCode = 403; // Username exists 
             }
             catch (Exception) { }              
 
