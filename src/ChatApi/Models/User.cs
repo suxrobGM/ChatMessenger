@@ -14,22 +14,24 @@ namespace ChatApi.Models
 
         public User()
         {
-            Id = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid().ToString().Replace("-","");
             UserGroups = new List<UserGroup>();
+            RegistrationDate = DateTime.Now;
         }
 
         
         public string Id { get; set; }
         public string Username { get; set; }
-        public string Password { get => _password; set { _password = ComputeHash(value); } }
+        public string Password { get => _password; set { _password = ComputeHash_Sha2(value); } }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string TelephoneNumber { get; set; }
+        public DateTime? RegistrationDate { get; set; }
 
         public virtual ICollection<UserGroup> UserGroups { get; set; }
 
-        private string ComputeHash(string str)
+        private string ComputeHash_Sha2(string str)
         {
             var sha2 = new SHA256CryptoServiceProvider();
             var hashBytes = sha2.ComputeHash(Encoding.UTF8.GetBytes(str));
