@@ -27,5 +27,10 @@ namespace ChatApi.Models
         {
             return UserGroups.Where(i => i.IsOwner).Select(i => i.User).FirstOrDefault();
         }
+
+        public int GetMembersCount()
+        {
+            return UserGroups.Select(i => i.User).Count();
+        }
     }
 }
