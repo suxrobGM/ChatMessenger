@@ -46,7 +46,7 @@ namespace ChatApi.Models
                 entity.HasKey(k => new { k.UserId, k.GroupId });
 
                 entity.HasOne(m => m.Group)
-                    .WithMany(m => m.Members)
+                    .WithMany(m => m.UserGroups)
                     .HasForeignKey(m => m.GroupId);
 
                 entity.HasOne(m => m.User)

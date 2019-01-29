@@ -17,5 +17,6 @@ namespace ChatApi.Models
 
         [DataType(DataType.MultilineText)]
         public string Text { get; set; }
+        public bool IsRead { get; set; }
     }
 }

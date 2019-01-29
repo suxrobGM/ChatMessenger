@@ -9,6 +9,8 @@ namespace ChatApi.Models
     {
         public string UserId { get; set; }
         public string GroupId { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool IsOwner { get; set; }
 
         public virtual User User { get; set; }
         public virtual Group Group { get; set; }
