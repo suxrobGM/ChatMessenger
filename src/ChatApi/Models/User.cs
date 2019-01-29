@@ -10,7 +10,7 @@ namespace ChatApi.Models
 {
     public class User
     {
-        private string _password { get; set; }
+        private string _passwordHash { get; set; }
 
         public User()
         {
@@ -22,7 +22,7 @@ namespace ChatApi.Models
         
         public string Id { get; set; }
         public string Username { get; set; }
-        public string Password { get => _password; set { _password = ComputeHash_Sha2(value); } }
+        public string PasswordHash { get => _passwordHash; set { _passwordHash = ComputeHash_Sha2(value); } }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -30,6 +30,11 @@ namespace ChatApi.Models
         public DateTime? RegistrationDate { get; set; }
 
         public virtual ICollection<UserGroup> UserGroups { get; set; }
+
+        public bool CheckPassword(string password)
+        {
+            return ComputeHash_Sha2(password) == _passwordHash;
+        }
 
         private string ComputeHash_Sha2(string str)
         {

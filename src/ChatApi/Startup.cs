@@ -61,7 +61,7 @@ namespace ChatApi
             db.Users.Add(new User()
             {
                 Username = "SuxrobGM",
-                Password = "Suxrobbek0729",
+                PasswordHash = "Suxrobbek0729",
                 Email = "suxrobGM@gmail.com"
             });
             db.SaveChanges();
