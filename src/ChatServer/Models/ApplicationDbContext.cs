@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using ChatCore.Models;
 
 namespace ChatServer.Models
 {
@@ -15,6 +16,7 @@ namespace ChatServer.Models
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,10 +35,24 @@ namespace ChatServer.Models
                     .ValueGeneratedOnAdd();
             });
 
+            modelBuilder.Entity<Message>(entity =>
+            {
+                entity.Property(k => k.Id)
+                    .ValueGeneratedOnAdd();
+
+                entity.HasOne(m => m.Sender)
+                    .WithOne()
+                    .HasForeignKey<Message>(m => m.SenderId);
+            });
+
             modelBuilder.Entity<Group>(entity =>
             {
                 entity.Property(k => k.Id)
                     .ValueGeneratedOnAdd();
+
+                entity.HasMany(m => m.Messages)
+                    .WithOne(m => m.Group)
+                    .HasForeignKey(m => m.GroupId);
             });
 
             modelBuilder.Entity<UserGroup>(entity =>

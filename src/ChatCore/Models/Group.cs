@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChatCore.Models.Utils;
 
-namespace ChatServer.Models
+namespace ChatCore.Models
 {
     public class Group
     {
@@ -11,11 +12,13 @@ namespace ChatServer.Models
         {
             Id = GeneratorId.Generate("group");
             UserGroups = new List<UserGroup>();
+            Messages = new List<GroupMessage>();
         }
 
         public string Id { get; set; }
         public string Name { get; set; }
 
+        public virtual ICollection<GroupMessage> Messages { get; set; }
         public virtual ICollection<UserGroup> UserGroups { get; set; }
 
         public IEnumerable<User> GetAdmin()

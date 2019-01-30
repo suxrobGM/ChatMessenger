@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChatServer.Models
+namespace ChatCore.Models.Utils
 {
     public class PaginatedList<T> : List<T>
     {
