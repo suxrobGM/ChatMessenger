@@ -20,6 +20,7 @@ namespace ChatCore.Models
 
         
         public string Id { get; set; }
+        public string MainPhotoId { get; set; }
         public string Username { get; set; }
         public string PasswordHash { get => _passwordHash; set { _passwordHash = ComputeHash_Sha2(value); } }
         public string Email { get; set; }
@@ -27,6 +28,7 @@ namespace ChatCore.Models
         public string LastName { get; set; }
         public string TelephoneNumber { get; set; }
         public DateTime? RegistrationDate { get; set; }
+        public virtual Media MainPhoto { get; set; }
 
         public virtual ICollection<UserGroup> UserGroups { get; set; }
 

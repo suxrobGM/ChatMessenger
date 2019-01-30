@@ -4,14 +4,16 @@ using ChatServer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChatServer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190130175926_added_message")]
+    partial class added_message
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,20 +31,6 @@ namespace ChatServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("ChatCore.Models.Media", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<byte[]>("Content");
-
-                    b.Property<string>("ContentType");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Medias");
                 });
 
             modelBuilder.Entity("ChatCore.Models.Message", b =>
@@ -81,8 +69,6 @@ namespace ChatServer.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("MainPhotoId");
-
                     b.Property<string>("PasswordHash");
 
                     b.Property<DateTime?>("RegistrationDate");
@@ -92,10 +78,6 @@ namespace ChatServer.Migrations
                     b.Property<string>("Username");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MainPhotoId")
-                        .IsUnique()
-                        .HasFilter("[MainPhotoId] IS NOT NULL");
 
                     b.ToTable("Users");
                 });
@@ -133,13 +115,6 @@ namespace ChatServer.Migrations
                     b.HasOne("ChatCore.Models.User", "Sender")
                         .WithOne()
                         .HasForeignKey("ChatCore.Models.Message", "SenderId");
-                });
-
-            modelBuilder.Entity("ChatCore.Models.User", b =>
-                {
-                    b.HasOne("ChatCore.Models.Media", "MainPhoto")
-                        .WithOne()
-                        .HasForeignKey("ChatCore.Models.User", "MainPhotoId");
                 });
 
             modelBuilder.Entity("ChatCore.Models.UserGroup", b =>

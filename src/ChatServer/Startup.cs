@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ChatServer.Models;
+using ChatCore.Models;
 
 namespace ChatServer
 {
@@ -51,10 +52,10 @@ namespace ChatServer
             app.UseHttpsRedirection();
             app.UseMvc();
 
-            //AddUser(service);
+            //PopulateDatabase(service);
         }
 
-        private void AddUser(IServiceProvider service)
+        private void AddMe(IServiceProvider service)
         {
             var db = service.GetRequiredService<ApplicationDbContext>();
 
@@ -64,6 +65,22 @@ namespace ChatServer
                 PasswordHash = "Suxrobbek0729",
                 Email = "suxrobGM@gmail.com"
             });
+            db.SaveChanges();
+        }
+
+        private void PopulateDatabase(IServiceProvider service)
+        {
+            var db = service.GetRequiredService<ApplicationDbContext>();
+
+            for (int i = 1; i <= 10; i++)
+            {
+                db.Users.Add(new User()
+                {
+                    Username = "Test" + i,
+                    PasswordHash = "Test" + i,
+                    Email = $"Test{i}@gmail.com"
+                });
+            }
             db.SaveChanges();
         }
     }

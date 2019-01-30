@@ -22,34 +22,33 @@ namespace ChatServer.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=ChatMessengerDB; Integrated Security=True; MultipleActiveResultSets=True")
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=ChatMessengerDB; Integrated Security=True; MultipleActiveResultSets=True")
                             .UseLazyLoadingProxies();
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(entity =>
+            {              
+                entity.HasOne(m => m.MainPhoto)
+                    .WithOne()
+                    .HasForeignKey<User>(m => m.MainPhotoId);
+            });
+
+            modelBuilder.Entity<Media>(entity =>
             {
-                entity.Property(k => k.Id)
-                    .ValueGeneratedOnAdd();
+                entity.ToTable("Medias");
             });
 
             modelBuilder.Entity<Message>(entity =>
-            {
-                entity.Property(k => k.Id)
-                    .ValueGeneratedOnAdd();
-
+            {               
                 entity.HasOne(m => m.Sender)
                     .WithOne()
                     .HasForeignKey<Message>(m => m.SenderId);
             });
 
             modelBuilder.Entity<Group>(entity =>
-            {
-                entity.Property(k => k.Id)
-                    .ValueGeneratedOnAdd();
-
+            {               
                 entity.HasMany(m => m.Messages)
                     .WithOne(m => m.Group)
                     .HasForeignKey(m => m.GroupId);

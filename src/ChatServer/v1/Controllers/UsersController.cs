@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ChatServer.Models;
+using ChatCore.Models;
+
 
 namespace ChatServer.Controllers
 {
@@ -20,9 +23,10 @@ namespace ChatServer.Controllers
 
         // GET api/v1/users
         [HttpGet]
-        public ActionResult<IEnumerable<User>> Get()
+        public async Task<ActionResult<IEnumerable<User>>> Get(int pageIndex = 1, int pageSize = 10)
         {
-            return _db.Users;
+            var paginatedList = await PaginatedList<User>.CreateAsync(_db.Users.AsNoTracking(), pageIndex, pageSize);
+            return paginatedList;
         }
 
         // GET api/v1/users/5
