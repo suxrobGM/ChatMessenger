@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
+using ChatCore.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ChatSdk.Api
 {
@@ -7,6 +12,7 @@ namespace ChatSdk.Api
     {
         private readonly HttpClient _request;
         private readonly string _host;
+        private readonly string _token;
 
         public ChatApiClient()
         {
@@ -17,6 +23,23 @@ namespace ChatSdk.Api
             };
         }
 
+        public async Task<bool> CheckUserExists(NetworkCredential networkCredential)
+        {
+            var response = await _request.GetAsync($"/users?username={networkCredential.UserName}");
 
+            if (response.IsSuccessStatusCode)
+            {                
+                var jArray = JArray.Parse(await response.Content.ReadAsStringAsync());
+                
+                if (jArray.Count > 0)
+                {                  
+                    var user = JsonConvert.DeserializeObject<User>(jArray[0].ToString());
+                    if (user.CheckPassword(networkCredential.Password))
+                        return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
