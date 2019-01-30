@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ChatApi.Migrations
+namespace ChatServer.Migrations
 {
     public partial class user_reg_date : Migration
     {

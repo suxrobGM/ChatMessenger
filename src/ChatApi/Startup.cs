@@ -11,9 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using ChatApi.Models;
+using ChatServer.Models;
 
-namespace ChatApi
+namespace ChatServer
 {
     public class Startup
     {

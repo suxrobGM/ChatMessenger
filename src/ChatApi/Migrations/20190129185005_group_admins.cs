@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ChatApi.Migrations
+namespace ChatServer.Migrations
 {
     public partial class group_admins : Migration
     {

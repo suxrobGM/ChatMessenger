@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatApi.Models
+namespace ChatServer.Models
 {
     public class User
     {

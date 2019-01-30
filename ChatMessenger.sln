@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClient", "src\ChatClien
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramControls", "src\TelegramControls\TelegramControls.csproj", "{6E461897-F293-4B0B-9DC8-0FA1BC6DF972}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApi", "src\ChatApi\ChatApi.csproj", "{AEA3856E-41E7-4625-92FF-646F1BE1C75F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatServer", "src\ChatApi\ChatServer.csproj", "{AEA3856E-41E7-4625-92FF-646F1BE1C75F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

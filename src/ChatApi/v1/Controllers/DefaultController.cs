@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ChatApi.v1.Controllers
+namespace ChatServer.v1.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]

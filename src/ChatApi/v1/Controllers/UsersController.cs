@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ChatApi.Models;
+using ChatServer.Models;
 
-namespace ChatApi.Controllers
+namespace ChatServer.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
