@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ChatServer.v1.Controllers
+namespace ChatServer.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class DefaultController : ControllerBase
     {
-        // GET api/v1/default
+        // GET api/default
         [HttpGet]
         public ActionResult<string> Get()
         {
