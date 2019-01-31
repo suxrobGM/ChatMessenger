@@ -6,6 +6,7 @@ using System.Net;
 using Prism.Commands;
 using Prism.Regions;
 using ChatClient.Views;
+using ChatCore.Api;
 
 namespace ChatClient.ViewModels
 {
@@ -44,7 +45,8 @@ namespace ChatClient.ViewModels
 
             SignInCommand = new DelegateCommand(async () =>
             {
-                var result = await Model.PrivateApiClient.CheckUserLoginAsync(new NetworkCredential(username, password));
+                var client = new ChatApiClient();
+                var result = await client.CheckUserExists(new NetworkCredential(username, password));
 
                 if(result)
                 {

@@ -6,7 +6,7 @@ using ChatCore.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ChatSdk.Api
+namespace ChatCore.Api
 {
     public class ChatApiClient
     {

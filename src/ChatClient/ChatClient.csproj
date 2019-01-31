@@ -156,6 +156,11 @@
   <ItemGroup>
     <Resource Include="Resources\background.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ChatCore\ChatCore.csproj">
+      <Project>{ece2064c-b5de-45c5-af43-885bcfda4284}</Project>
+      <Name>ChatCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
